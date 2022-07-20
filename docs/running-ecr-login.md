@@ -27,6 +27,9 @@ kubectl run -i --tty --rm test-ecr-login     \
   -- scripts/ecr-login.sh
 ```
 
+### Scheduled Runs
+TBD
+
 ### Links
 - https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 - https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account
