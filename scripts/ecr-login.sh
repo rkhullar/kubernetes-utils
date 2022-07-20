@@ -16,5 +16,5 @@ ECR_URL=$(python3 -c "import os; cmd=os.environ['DOCKER_LOGIN_CMD']; cmd_arr=cmd
 unset DOCKER_LOGIN_CMD
 
 # TODO: try upserting secret instead of recreating
-kubectl delete secret "$ECR_LOGIN"
+kubectl delete secret "$ECR_LOGIN" || true
 kubectl create secret docker-registry "$ECR_LOGIN" --docker-server="$ECR_URL" --docker-username="AWS" --docker-password="$ECR_TOKEN"
