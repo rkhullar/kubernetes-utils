@@ -1,4 +1,4 @@
-apiVersion: batch/v1
+apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: ecr-login
@@ -8,11 +8,12 @@ spec:
     spec:
       template:
         spec:
+          restartPolicy: Never
           containers:
             - name: k8s-util
               image: rkhullar/kubernetes-utils:0.1.0
               imagePullPolicy: IfNotPresent
-              command:
+              args:
                 - scripts/ecr-login.sh
               env:
                 - name: KUBERNETES_TOKEN
@@ -32,4 +33,3 @@ spec:
                   value: '{ecr_login_secret_name}'
                 - name: AWS_DEFAULT_REGION
                   value: '{ecr_region}'
-          restartPolicy: OnFailure
