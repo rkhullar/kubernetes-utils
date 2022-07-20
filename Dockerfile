@@ -3,7 +3,7 @@ FROM alpine:${ALPINE_VERSION}
 ARG KUBE_VERSION=1.24.3
 ARG HELM_VERSION=3.9.1
 
-RUN apk add bash bind-tools curl findutils jq
+RUN apk add aws-cli bash bind-tools curl findutils jq nano zip
 
 # intall kubectl
 # NOTE: latest version can be inferred with $(curl -L -s https://dl.k8s.io/release/stable.txt)
