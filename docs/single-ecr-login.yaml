@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
     - name: k8s-util
-      image: rkhullar/kubernetes-utils:0.1.0
+      image: rkhullar/kubernetes-utils:{version}
       imagePullPolicy: IfNotPresent
       args:
         - scripts/ecr-login.sh

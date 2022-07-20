@@ -16,14 +16,15 @@ pulling container images. The config can be defined in the pod spec directly, or
 
 ### Single Run
 ```shell
-kubectl run -i --tty --rm test-ecr-login     \
-  --image rkhullar/kubernetes-utils:0.1.0    \
-  --env="KUBERNETES_TOKEN=$KUBERNETES_TOKEN" \
-  --env="API_SERVER=$API_SERVER"             \
-  --env="NAMESPACE=$NAMESPACE"               \
-  --env="ECR_CREDS={ecr_cred_secret_name}"   \
-  --env="ECR_LOGIN={ecr_login_secret_name}"  \
-  --env="AWS_DEFAULT_REGION={ecr_region}"    \
+# NOTE: check dockerhub for latest version
+kubectl run -i --tty --rm test-ecr-login         \
+  --image rkhullar/kubernetes-utils:{version}    \
+  --env="KUBERNETES_TOKEN=$KUBERNETES_TOKEN"     \
+  --env="API_SERVER=$API_SERVER"                 \
+  --env="NAMESPACE=$NAMESPACE"                   \
+  --env="ECR_CREDS={ecr_cred_secret_name}"       \
+  --env="ECR_LOGIN={ecr_login_secret_name}"      \
+  --env="AWS_DEFAULT_REGION={ecr_region}"        \
   -- scripts/ecr-login.sh
 ```
 
@@ -33,3 +34,6 @@ TBD
 ### Links
 - https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 - https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account
+- [docker rkhullar/kubernetes-util][k8s-util]
+
+[k8s-util]: https://hub.docker.com/repository/docker/rkhullar/kubernetes-utils
