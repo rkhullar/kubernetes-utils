@@ -29,7 +29,23 @@ kubectl run -i --tty --rm test-ecr-login         \
 ```
 
 ### Scheduled Runs
-TBD
+#### installation
+```shell
+cp scheduled-ecr-login.yaml.dist local/scheduled-ecr-login.yaml
+# substitute placeholders: name, schedule, version, service_account_secret, api_server,
+#                          ecr_cred_secret_name, ecr_login_secret_name, ecr_region
+kubectl apply -f local/scheduled-ecr-login.yaml
+```
+#### testing
+```shell
+# may require older kubectl version i.e. 1.20
+kubectl create job --from=cronjob/ecr-login test-ecr-login
+```
+
+#### verify docker config
+```shell
+kubectl get secret {ecr_login_secret_name} -o jsonpath='{.data.\.dockerconfigjson}' | base64 --decode && echo
+```
 
 ### Links
 - https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
