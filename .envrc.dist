@@ -1,0 +1,7 @@
+# source_up
+# export KUBECONFIG=path/to/config.yaml
+export API_SERVER='https://{kubernetes_host}'
+export NAMESPACE='{namespace}'
+
+export TOKEN_NAME="$(kubectl get sa tiller -o jsonpath='{.secrets[0].name}')"
+export KUBERNETES_TOKEN="$(kubectl get secret ${TOKEN_NAME} -o jsonpath='{.data.token}' | base64 --decode && echo)"
